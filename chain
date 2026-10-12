@@ -166,6 +166,42 @@
           }
         }
       },
+      [
+  {
+    "remarks": "195.201.153.149 \u2192 \u062c\u06cc\u0646\u06a9\u0633 | \ud835\udddd\ud835\uddf6\ud835\uddfb\ud835\uddeb \u2726 \ud83d\udef8 Warp Speed \u00b7 XHTTP",
+    "log": {
+      "loglevel": "warning"
+    },
+    "outbounds": [
+      {
+        "tag": "hop0",
+        "protocol": "vmess",
+        "settings": {
+          "vnext": [
+            {
+              "address": "195.201.153.149",
+              "port": 51924,
+              "users": [
+                {
+                  "id": "b6a73bf0-4467-4747-a4d7-c5df7c03bf13",
+                  "alterId": 0,
+                  "security": "auto"
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "ws",
+          "security": "none",
+          "wsSettings": {
+            "path": "/@BlueKnight_Net--@BlueKnight_Net--@BlueKnight_Net--@BlueKnight_Net--vmess",
+            "headers": {
+              "Host": "195.201.153.149"
+            }
+          }
+        }
+      },
       {
         "tag": "hop1",
         "protocol": "vless",
@@ -185,21 +221,16 @@
           ]
         },
         "streamSettings": {
-          "network": "ws",
+          "network": "xhttp",
           "security": "tls",
           "tlsSettings": {
             "serverName": "dadaasham.up.railway.app",
             "allowInsecure": false,
             "alpn": [
+              "h2",
               "http/1.1"
             ],
-            "fingerprint": "ios"
-          },
-          "wsSettings": {
-            "path": "/cdn/ec7ebb11-5548-4dc2-8058-ecef175c7582?ed=2560",
-            "headers": {
-              "Host": "dadaasham.up.railway.app"
-            }
+            "fingerprint": "chrome"
           },
           "sockopt": {
             "dialerProxy": "hop0"
@@ -258,107 +289,6 @@
         {
           "type": "field",
           "outboundTag": "hop1",
-          "port": "0-65535"
-        }
-      ]
-    }
-  },
-  {
-    "remarks": "DE🇩🇪1",
-    "log": {
-      "loglevel": "warning"
-    },
-    "outbounds": [
-      {
-        "tag": "proxy",
-        "protocol": "vless",
-        "settings": {
-          "vnext": [
-            {
-              "address": "www.speedtest.net",
-              "port": 443,
-              "users": [
-                {
-                  "id": "074f2135-887f-4794-bc40-a77755e4d0df",
-                  "encryption": "none",
-                  "flow": ""
-                }
-              ]
-            }
-          ]
-        },
-        "streamSettings": {
-          "network": "ws",
-          "security": "tls",
-          "tlsSettings": {
-            "serverName": "wEb-354415-876134.JAlalm7792-2Ac.WOrkers.dEv",
-            "allowInsecure": false,
-            "alpn": [
-              "http/1.1"
-            ],
-            "fingerprint": "chrome",
-            "echConfigList": "cloudflare-ech.com+udp://1.1.1.1"
-          },
-          "wsSettings": {
-            "path": "/vl/XAiqUrgtVRHLjv82OOKf3afdnL",
-            "headers": {
-              "Host": "web-354415-876134.jalalm7792-2ac.workers.dev"
-            }
-          }
-        }
-      },
-      {
-        "tag": "direct",
-        "protocol": "freedom",
-        "settings": {
-          "domainStrategy": "UseIP"
-        }
-      },
-      {
-        "tag": "block",
-        "protocol": "blackhole",
-        "settings": {}
-      }
-    ],
-    "inbounds": [
-      {
-        "tag": "socks-in",
-        "port": 10808,
-        "listen": "127.0.0.1",
-        "protocol": "socks",
-        "settings": {
-          "auth": "noauth",
-          "udp": true
-        },
-        "sniffing": {
-          "enabled": true,
-          "destOverride": [
-            "http",
-            "tls"
-          ]
-        }
-      },
-      {
-        "tag": "http-in",
-        "port": 10809,
-        "listen": "127.0.0.1",
-        "protocol": "http",
-        "settings": {},
-        "sniffing": {
-          "enabled": true,
-          "destOverride": [
-            "http",
-            "tls"
-          ]
-        }
-      }
-    ],
-    "routing": {
-      "domainStrategy": "IPIfNonMatch",
-      "rules": [
-        {
-          "type": "field",
-          "outboundTag": "proxy",
           "port": "0-65535"
         }
       ]
