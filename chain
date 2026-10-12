@@ -132,43 +132,7 @@
     }
   },
   {
-    "remarks": "195.201.153.149 → جینکس | 𝗝𝗶𝗻𝗫 ✦ 🇳🇱 Amsterdam Rocket · JinX Core",
-    "log": {
-      "loglevel": "warning"
-    },
-    "outbounds": [
-      {
-        "tag": "hop0",
-        "protocol": "vmess",
-        "settings": {
-          "vnext": [
-            {
-              "address": "195.201.153.149",
-              "port": 51924,
-              "users": [
-                {
-                  "id": "b6a73bf0-4467-4747-a4d7-c5df7c03bf13",
-                  "alterId": 0,
-                  "security": "auto"
-                }
-              ]
-            }
-          ]
-        },
-        "streamSettings": {
-          "network": "ws",
-          "security": "none",
-          "wsSettings": {
-            "path": "/@BlueKnight_Net--@BlueKnight_Net--@BlueKnight_Net--@BlueKnight_Net--vmess",
-            "headers": {
-              "Host": "195.201.153.149"
-            }
-          }
-        }
-      },
-      [
-  {
-    "remarks": "195.201.153.149 \u2192 \u062c\u06cc\u0646\u06a9\u0633 | \ud835\udddd\ud835\uddf6\ud835\uddfb\ud835\uddeb \u2726 \ud83d\udef8 Warp Speed \u00b7 XHTTP",
+    "remarks": "195.201.153.149 → جینکس | 𝗝𝗶𝗻𝗫 ✦ 🛸 Warp Speed · XHTTP",
     "log": {
       "loglevel": "warning"
     },
