@@ -262,5 +262,106 @@
         }
       ]
     }
-  },vless://074f2135-887f-4794-bc40-a77755e4d0df@www.speedtest.net:443?encryption=none&security=tls&sni=wEb-354415-876134.JAlalm7792-2Ac.WOrkers.dEv&alpn=http/1.1&ech_enabled=true&ech_server_name=cloudflare-ech.com&ech=cloudflare-ech.com+udp://1.1.1.1&fp=chrome&type=ws&host=web-354415-876134.jalalm7792-2ac.workers.dev&path=/vl/XAiqUrgtVRHLjv82OOKf3afdnL&packetEncoding=xudp#DE%F0%9F%87%A9%F0%9F%87%AA1
+  },
+  {
+    "remarks": "DE🇩🇪1",
+    "log": {
+      "loglevel": "warning"
+    },
+    "outbounds": [
+      {
+        "tag": "proxy",
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "www.speedtest.net",
+              "port": 443,
+              "users": [
+                {
+                  "id": "074f2135-887f-4794-bc40-a77755e4d0df",
+                  "encryption": "none",
+                  "flow": ""
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "ws",
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "wEb-354415-876134.JAlalm7792-2Ac.WOrkers.dEv",
+            "allowInsecure": false,
+            "alpn": [
+              "http/1.1"
+            ],
+            "fingerprint": "chrome",
+            "echConfigList": "cloudflare-ech.com+udp://1.1.1.1"
+          },
+          "wsSettings": {
+            "path": "/vl/XAiqUrgtVRHLjv82OOKf3afdnL",
+            "headers": {
+              "Host": "web-354415-876134.jalalm7792-2ac.workers.dev"
+            }
+          }
+        }
+      },
+      {
+        "tag": "direct",
+        "protocol": "freedom",
+        "settings": {
+          "domainStrategy": "UseIP"
+        }
+      },
+      {
+        "tag": "block",
+        "protocol": "blackhole",
+        "settings": {}
+      }
+    ],
+    "inbounds": [
+      {
+        "tag": "socks-in",
+        "port": 10808,
+        "listen": "127.0.0.1",
+        "protocol": "socks",
+        "settings": {
+          "auth": "noauth",
+          "udp": true
+        },
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls"
+          ]
+        }
+      },
+      {
+        "tag": "http-in",
+        "port": 10809,
+        "listen": "127.0.0.1",
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls"
+          ]
+        }
+      }
+    ],
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        {
+          "type": "field",
+          "outboundTag": "proxy",
+          "port": "0-65535"
+        }
+      ]
+    }
+  }
 ]
