@@ -1,0 +1,132 @@
+{
+    "inbounds": [
+        {
+            "listen": "127.0.0.1",
+            "port": 10808,
+            "protocol": "socks",
+            "settings": {
+                "auth": "noauth",
+                "udp": true
+            },
+            "sniffing": {
+                "destOverride": [
+                    "http",
+                    "tls"
+                ],
+                "enabled": true
+            },
+            "tag": "socks-in"
+        },
+        {
+            "listen": "127.0.0.1",
+            "port": 10809,
+            "protocol": "http",
+            "settings": {
+            },
+            "sniffing": {
+                "destOverride": [
+                    "http",
+                    "tls"
+                ],
+                "enabled": true
+            },
+            "tag": "http-in"
+        }
+    ],
+    "log": {
+        "loglevel": "warning"
+    },
+    "meta": null,
+    "outbounds": [
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "195.201.153.149",
+                        "port": 51924,
+                        "users": [
+                            {
+                                "encryption": "none",
+                                "flow": "",
+                                "id": "b6a73bf0-4467-4747-a4d7-c5df7c03bf13"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "grpcSettings": {
+                    "serviceName": "@BlueKnight_Net--@BlueKnight_Net--@BlueKnight_Net--@BlueKnight_Net--grpc"
+                },
+                "network": "grpc",
+                "security": "none"
+            },
+            "tag": "hop0"
+        },
+        {
+            "protocol": "vless",
+            "settings": {
+                "vnext": [
+                    {
+                        "address": "dadaasham.up.railway.app",
+                        "port": 443,
+                        "users": [
+                            {
+                                "encryption": "none",
+                                "flow": "",
+                                "id": "53319231-7adb-447c-b4b6-7539169dbb19"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "streamSettings": {
+                "network": "ws",
+                "security": "tls",
+                "sockopt": {
+                    "dialerProxy": "hop0"
+                },
+                "tlsSettings": {
+                    "allowInsecure": false,
+                    "alpn": [
+                        "http/1.1"
+                    ],
+                    "fingerprint": "ios",
+                    "serverName": "dadaasham.up.railway.app"
+                },
+                "wsSettings": {
+                    "headers": {
+                        "Host": "dadaasham.up.railway.app"
+                    },
+                    "path": "/cdn/ec7ebb11-5548-4dc2-8058-ecef175c7582?ed=2560"
+                }
+            },
+            "tag": "hop1"
+        },
+        {
+            "protocol": "freedom",
+            "settings": {
+                "domainStrategy": "UseIP"
+            },
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "settings": {
+            },
+            "tag": "block"
+        }
+    ],
+    "remarks": "🇩🇪VLESS-gRPC → جینکس | 𝗝𝗶𝗻𝗫 ✦ 🇳🇱 Amsterdam Rocket · JinX Core",
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "rules": [
+            {
+                "outboundTag": "hop1",
+                "port": "0-65535",
+                "type": "field"
+            }
+        ]
+    }
+}
