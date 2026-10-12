@@ -1,0 +1,134 @@
+[
+  {
+    "remarks": "195.201.153.149 → جینکس | 𝗝𝗶𝗻𝗫 ✦ 🇳🇱 Amsterdam Rocket · JinX Core",
+    "log": {
+      "loglevel": "warning"
+    },
+    "outbounds": [
+      {
+        "tag": "hop0",
+        "protocol": "vmess",
+        "settings": {
+          "vnext": [
+            {
+              "address": "195.201.153.149",
+              "port": 51924,
+              "users": [
+                {
+                  "id": "b6a73bf0-4467-4747-a4d7-c5df7c03bf13",
+                  "alterId": 0,
+                  "security": "auto"
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "ws",
+          "security": "none",
+          "wsSettings": {
+            "path": "/@BlueKnight_Net--@BlueKnight_Net--@BlueKnight_Net--@BlueKnight_Net--vmess",
+            "headers": {
+              "Host": "195.201.153.149"
+            }
+          }
+        }
+      },
+      {
+        "tag": "hop1",
+        "protocol": "vless",
+        "settings": {
+          "vnext": [
+            {
+              "address": "dadaasham.up.railway.app",
+              "port": 443,
+              "users": [
+                {
+                  "id": "53319231-7adb-447c-b4b6-7539169dbb19",
+                  "encryption": "none",
+                  "flow": ""
+                }
+              ]
+            }
+          ]
+        },
+        "streamSettings": {
+          "network": "ws",
+          "security": "tls",
+          "tlsSettings": {
+            "serverName": "dadaasham.up.railway.app",
+            "allowInsecure": false,
+            "alpn": [
+              "http/1.1"
+            ],
+            "fingerprint": "ios"
+          },
+          "wsSettings": {
+            "path": "/cdn/ec7ebb11-5548-4dc2-8058-ecef175c7582?ed=2560",
+            "headers": {
+              "Host": "dadaasham.up.railway.app"
+            }
+          },
+          "sockopt": {
+            "dialerProxy": "hop0"
+          }
+        }
+      },
+      {
+        "tag": "direct",
+        "protocol": "freedom",
+        "settings": {
+          "domainStrategy": "UseIP"
+        }
+      },
+      {
+        "tag": "block",
+        "protocol": "blackhole",
+        "settings": {}
+      }
+    ],
+    "inbounds": [
+      {
+        "tag": "socks-in",
+        "port": 10808,
+        "listen": "127.0.0.1",
+        "protocol": "socks",
+        "settings": {
+          "auth": "noauth",
+          "udp": true
+        },
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls"
+          ]
+        }
+      },
+      {
+        "tag": "http-in",
+        "port": 10809,
+        "listen": "127.0.0.1",
+        "protocol": "http",
+        "settings": {},
+        "sniffing": {
+          "enabled": true,
+          "destOverride": [
+            "http",
+            "tls"
+          ]
+        }
+      }
+    ],
+    "routing": {
+      "domainStrategy": "IPIfNonMatch",
+      "rules": [
+        {
+          "type": "field",
+          "outboundTag": "hop1",
+          "port": "0-65535"
+        }
+      ]
+    }
+  }
+]
